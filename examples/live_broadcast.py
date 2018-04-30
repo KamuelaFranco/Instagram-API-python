@@ -21,7 +21,7 @@ assert api.createBroadcast()
 broadcast_id = api.LastJson['broadcast_id']
 upload_url = api.LastJson['upload_url']
 
-# we now start a boradcast - it will now appear in the live-feed of users
+# we now start a broadcast - it will now appear in the live-feed of users
 assert api.startBroadcast(broadcast_id, sendNotification=SEND_NOTIFICATIONS)
 
 ffmpeg_cmd = "ffmpeg -rtbufsize 256M -re -i '{file}' -acodec libmp3lame -ar 44100 -b:a 128k -pix_fmt yuv420p -profile:v baseline -s 720x1280 -bufsize 6000k -vb 400k -maxrate 1500k -deinterlace -vcodec libx264 -preset veryfast -g 30 -r 30 -f flv '{stream_url}'".format(
